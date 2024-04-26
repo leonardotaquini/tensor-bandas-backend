@@ -17,6 +17,7 @@ export interface MusicalRankingUseCase {
     user():string[];
     bands():string[];
     features():string[];
+    bandFeats():number[][];
     
 }
 
@@ -29,7 +30,7 @@ export class MusicalRanking implements MusicalRankingUseCase{
     autoClean(): void {
         this.tf.tidy(()=>{ });
     }
-    arrayToTensor(array: number[][]): Tensor {
+    arrayToTensor(array: number[][] ): Tensor {
         return this.tf.tensor(array);
     }
     getUserFeats(userVotes: Tensor, bandFeats: Tensor): Tensor {
@@ -45,4 +46,13 @@ export class MusicalRanking implements MusicalRankingUseCase{
     user = ()=> ['Leonardo'];
     bands = ()=> ['Nirvana', 'Nine Inch Nails', 'Backstreet', 'N Sync', 'Night Club', 'Apashe', 'STP'];
     features = ()=> ['Grunge', 'Rock', 'Industrial', 'Boy Band', 'Dance', 'Techno'];
+    bandFeats = ()=> [
+        [1, 1, 0, 0, 0, 0],
+        [1, 0, 1, 0, 0, 0],
+        [0, 0, 0, 1, 1, 0],
+        [0, 0, 0, 1, 0, 0],
+        [0, 0, 1, 0, 0, 1],
+        [0, 0, 1, 0, 0, 1],
+        [1, 1, 0, 0, 0, 0],
+    ];
 }

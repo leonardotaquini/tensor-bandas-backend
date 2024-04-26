@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import tensorRoutes from "../routes/tensor.routes";
 
 export class ServerApp {
   constructor(
@@ -15,13 +16,12 @@ export class ServerApp {
     
 
     // Configure routes
-    // this.app.use('/api/tensorflow')
+    this.app.use('/api/tensorflow', tensorRoutes)
   }
 
-  static run() {
-    const server = new ServerApp();
-    server.app.listen(server.port, () => {
-        console.log(`Server is running on http://localhost:${server.port}`);
+   run() {
+        this.app.listen(this.port, () => {
+        console.log(`Server is running on http://localhost:${this.port}`);
     });
   }
 }

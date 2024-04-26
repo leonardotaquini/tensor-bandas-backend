@@ -1,10 +1,14 @@
 import { ServerApp } from "./presentation/server-app";
 
+( async() => {
+
+     main();
+
+})();
 
 
-
-function main() {
-    ServerApp.run();
+ function main() {
+    const server = new ServerApp();
+     server.run();
 }
 
-main();

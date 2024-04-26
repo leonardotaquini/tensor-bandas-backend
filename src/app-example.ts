@@ -3,7 +3,7 @@ import tf from '@tensorflow/tfjs';
 
  // Tidy to auto-clean all these tensors
  tf.tidy(() => {
-    const users = ['Gant', 'Todd', 'Jed', 'Justin']
+    const users = ['Leonardo']
     const bands = [
       'Nirvana',
       'Nine Inch Nails',
@@ -25,9 +25,6 @@ import tf from '@tensorflow/tfjs';
     // User votes <4>
     const user_votes = tf.tensor([
       [10, 9, 1, 1, 8, 7, 8],
-      [6, 8, 2, 2, 0, 10, 0],
-      [0, 2, 10, 9, 3, 7, 0],
-      [7, 4, 2, 3, 6, 5, 5],
     ])
 
     // Music Styles <5>
@@ -48,6 +45,7 @@ import tf from '@tensorflow/tfjs';
 
     // Let's make them pretty
     const top_user_features = tf.topk(user_feats, features.length)
+   
     // Back to JavaScript
     const top_genres = top_user_features.indices.arraySync()
     console.log(top_genres)
